@@ -29,7 +29,7 @@ namespace Grupp2Projektarbete
             $"Minimum : {Minimum(source)}\n" +
             $"Medelvärde : {Mean(source)} \n" +
             $"Median: {Median(source)}\n" +
-            //    $"Typvärde : {Mode(source)}\n" +
+            $"Typvärde : {Mode(source)}\n" +
             $"Variationsbredd : {Range(source)}\n" +
             $"Standardavvikelse : {StandardDeviation(source)}";
         }
@@ -65,10 +65,14 @@ namespace Grupp2Projektarbete
             return source.Min();
         }
 
-        //private static int[] Mode(int[] source)
-        //{
-        //    
-        //}
+       private static int Mode(int[] source)
+        {
+            int mode = source.GroupBy(v => v)
+            .OrderByDescending(g => g.Count())
+            .First()
+            .Key;
+            return mode;
+        }
 
         private static int Range(int[] source)
         {
